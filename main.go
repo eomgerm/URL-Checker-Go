@@ -20,10 +20,20 @@ func main() {
 	"https://www.instagram.com/",
 	"https://academy.nomadcoders.co/",
 	}
+	results := map[string]string {}
 	
 	for _, url := range urls {
-		hitUrl(url)
+		result := "OK"
+		err := hitUrl(url)
+		if err != nil {
+			result = "FAILED"
+		}
+		results[url] = result
 	}
+	
+	for url, result := range results {
+			fmt.Println(url, result)
+		}
 }
 
 func hitUrl (url string) error {
